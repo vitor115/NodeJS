@@ -13,6 +13,3 @@ function lerArquivo(chunck){
 
 myReadStream.on('data', lerArquivo); //colocando a variavel para funcionamento com o "on" e a função ler arquivo
 
-let chunck = myReadStream.on('data');
-console.log(' eita');
-console.log(chunck);
