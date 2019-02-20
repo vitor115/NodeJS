@@ -1,0 +1,28 @@
+{
+  "name": "node_server",
+  "version": "1.0.0",
+  "description": "Training Node JS server with express",
+  "main": "module23.js module24.js module24.js",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitor115/NodeJS.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "course"
+  ],
+  "author": "Vitor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitor115/NodeJS/issues"
+  },
+  "homepage": "https://github.com/vitor115/NodeJS#readme"
+}
