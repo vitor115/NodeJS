@@ -4,32 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><%= person %>'s Profile</title>
+    <title>Home</title>
     <style>
         body{
         font-family:arial;
-        color: aliceblue;
-        background-color: rgb(118, 181, 236);
         }
         
         h1{
             text-align: center;
-            font-size: 70px;
-        }
-        h2{
-            text-align: center;
-            font-size: 50px;
-        }
-        li{
-            text-align: center;
-            font-size: 30px;
-            margin: 4px 5px 5px 5px;
         }
         p{
             margin: 15px 15px 15px 15px;
             font-size: 15px;
-            text-align: center;
-
         }
         footer a h2{
             text-decoration: none;
@@ -48,22 +34,10 @@
 </head>
 <body>
     <% include partials/nav.ejs %>
-    <h1>Welcome to the profile of <%= person %></h1>
-    <p><strong>Age: </strong><%= data.age %></p>
-    <p><strong>Job: </strong><%= data.job %></p>
-    <h2>Hobbies</h2>
-    <ul>
-        <% data.hobbies.forEach(function(item){ %>
-            <li>
-                <%= item %>
-            </li>
-
-
-        <% }); %>
-
-    </ul>
+    <h1>Hello Sir welcome to the Ragazzi</h1>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae non exercitationem facere ut tenetur, unde accusamus deleniti similique ipsam velit enim deserunt, quos vitae placeat, magnam quod quaerat incidunt maxime!</p>
     <footer>
-         <a href="/contact"> Contact US!</a>
+         <a href="/contact"> <h2>Contact US!</h2></a>
     </footer>
 </body>
 </html>
