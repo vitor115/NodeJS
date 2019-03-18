@@ -36,9 +36,15 @@ function addConta(req, res) {
     res.send('Request to open a new acount in node bank received it will be aproved soon...');
 }
 
+/**
+ * 
+ * @description mostra a conta requisitada pelo metodo get 
+ * 
+ */
+
 function showConta(req, res) {
     
-    console.log("Conta requisitada: "+conta[req.params.id].Name);
+    console.log("Conta requisitada: "+ conta[req.params.id].Name);
     
     res.json(conta[req.params.id]);
 };
@@ -55,19 +61,45 @@ function changeConta(req, res){
     conta[req.params.id].Name =req.body.Name;
 
 
-
 }
 
 /**
  * @description sacar conta específica
  */
 function saqueConta(req, res){
-    console.log("implementar")
+    var currentValue = conta[req.params.id].Balance;
+    var reqValue = req.body.valor;
+    if (reqValue>currentValue){
+        console.log("Error: Insuficient Balance");
+        res.send("Saldo insuficiente...");
+    }
+    else{
+        currentValue = currentValue - reqValue;
+        conta[req.params.id].Balance = currentValue;
+        console.log("Withdraw sucefully made");
+        res.send("Saldo atual: "+ currentValue);
+    }
+
 
 }
 
 function transferConta(req, res){
-    console.log("implementar")
+    var currentValue = conta[req.params.id].Balance;
+    var reqValue = req.body.valor;
+    var receptorValue = conta[req.params.idt].Balance;
+    if (reqValue>currentValue){
+        console.log("Error: Insuficient Balance");
+        res.send("Saldo insuficiente...");
+    }
+    else{
+        currentValue = currentValue - reqValue;
+        conta[req.params.id].Balance = currentValue;
+        receptorValue = receptorValue + reqValue;
+        conta[req.params.idt].Balance = receptorValue;
+        console.log("Withdraw sucefully made" + receptorValue);
+        res.send("Saldo atual: "+ currentValue)
+
+    }
 
 }
 /* function changeView(req,res){
@@ -77,20 +109,14 @@ function transferConta(req, res){
 app.get('/', home);
 app.get('/conta', getConta);
 app.post('/conta', addConta);
-
-
-
-
 app.get('/conta/:id', showConta);
-
-
-
-
-
 app.put('/conta/:id/', changeConta);
 //app.get('/conta/:id/edit', changeView);
+
+//Não implementados
 app.post('/conta/:id/saque', saqueConta);
-app.post('/conta/:id/transfer/:id', transferConta);
+//app.get('/conta/:id/saque', viewSaque);
+app.post('/conta/:id/transfer/:idt', transferConta);
 
 
 app.listen(3000);
