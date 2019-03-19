@@ -15,7 +15,7 @@ app.use(bodyParser.json())
 
 //JSON.stringfy(contas);
 function home(req, res) {
-    console.log("Bem vindo ao banco");
+    //console.log("Bem vindo ao banco");
     res.end("bem vindo ao banco!");
 }
 
@@ -44,7 +44,7 @@ function addConta(req, res) {
 
 function showConta(req, res) {
     
-    console.log("Conta requisitada: "+ conta[req.params.id].Name);
+    //console.log("Conta requisitada: "+ conta[req.params.id].Name);
     
     res.json(conta[req.params.id]);
 };
@@ -56,8 +56,8 @@ function showConta(req, res) {
  */
 
 function changeConta(req, res){
-    console.log("Alteracoes: ")
-    console.log(req.body.Name);
+    //console.log("Alteracoes: ")
+    //console.log(req.body.Name);
     conta[req.params.id].Name =req.body.Name;
 
 
@@ -84,18 +84,21 @@ function saqueConta(req, res){
 }
 
 function transferConta(req, res){
-    var currentValue = conta[req.params.id].Balance;
-    var reqValue = req.body.valor;
-    var receptorValue = conta[req.params.idt].Balance;
+    console.log("abaixo tranferencia");
+    console.log(req.params);
+    //var currentValue = conta[req.params.id].Balance;
+    var currentValue = conta[req.params.idTransferidor].Balance; //Saldo do transferidor
+    var reqValue = req.body.valor; //valor transferido
+    var receptorValue = conta[req.params.idReceptor].Balance; //saldo do receptor
     if (reqValue>currentValue){
-        console.log("Error: Insuficient Balance");
+        //console.log("Error: Insuficient Balance");
         res.send("Saldo insuficiente...");
     }
     else{
         currentValue = currentValue - reqValue;
-        conta[req.params.id].Balance = currentValue;
+        conta[req.params.idTransferidor].Balance = currentValue;
         receptorValue = receptorValue + reqValue;
-        conta[req.params.idt].Balance = receptorValue;
+        conta[req.params.idReceptor].Balance = receptorValue;
         console.log("Withdraw succefully made" + receptorValue);
         res.send("Saldo atual: "+ currentValue)
 
@@ -116,7 +119,8 @@ app.put('/conta/:id/', changeConta);
 //Não implementados
 app.post('/conta/:id/saque', saqueConta);
 //app.get('/conta/:id/saque', viewSaque);
-app.post('/conta/:id/transfer/:idt', transferConta);
+//app.post('/conta/:id/transfer/:idt', transferConta);
+app.post('/conta/:idTransferidor/transfer/:idReceptor', transferConta);
 
 
 app.listen(3000);
