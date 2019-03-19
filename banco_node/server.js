@@ -25,7 +25,7 @@ function getConta(req, res) {
 }
 /**
  * 
- * @description Adiciona contas através do 
+ * @description Adiciona contas através do postman
  *  
  */
 function addConta(req, res) {
@@ -96,7 +96,7 @@ function transferConta(req, res){
         conta[req.params.id].Balance = currentValue;
         receptorValue = receptorValue + reqValue;
         conta[req.params.idt].Balance = receptorValue;
-        console.log("Withdraw sucefully made" + receptorValue);
+        console.log("Withdraw succefully made" + receptorValue);
         res.send("Saldo atual: "+ currentValue)
 
     }
