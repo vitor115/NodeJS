@@ -33,7 +33,7 @@ function addConta(req, res) {
     conta = req.body;
 
     
-    res.send('Request to open a new acount in node bank received it will be aproved soon...');
+    res.send('Request to open a new account in node bank received it will be aproved soon...');
 }
 
 /**
@@ -76,11 +76,17 @@ function saqueConta(req, res){
     else{
         currentValue = currentValue - reqValue;
         conta[req.params.id].Balance = currentValue;
-        console.log("Withdraw sucefully made");
+        console.log("Withdraw succefully made");
         res.send("Saldo atual: "+ currentValue);
     }
 
 
+}
+
+
+
+function viewSaque(req, res) {
+    res.end("Visão da tela de Saque!");
 }
 
 function transferConta(req, res){
@@ -118,7 +124,7 @@ app.put('/conta/:id/', changeConta);
 
 //Não implementados
 app.post('/conta/:id/saque', saqueConta);
-//app.get('/conta/:id/saque', viewSaque);
+app.get('/conta/:id/saque', viewSaque);
 //app.post('/conta/:id/transfer/:idt', transferConta);
 app.post('/conta/:idTransferidor/transfer/:idReceptor', transferConta);
 
